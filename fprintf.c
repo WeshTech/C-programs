@@ -1,17 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 int main()
 {
-    FILE *filepointer;
-    filepointer = fopen("New","w");
+    int i;
+    FILE* filepointer;
+    char* descrip[] = {"Batteries","Bulbs","Fuses"};
+    float price[] = {39.95,3.22,1.03};
+    filepointer = fopen("prices.txt","w");
     if (filepointer == NULL)
     {
-        printf("The file has not been created\n");
+        printf("File not created\n");
+        exit(1);
     }
     else
     {
-        printf("The file has been created successfully");
+        printf("File has been created");
+    }
+    for (i = 0; i < 3; i++)
+    {
+        fprintf(filepointer, "%-9s %5.3f\n",descrip[i],price[i]);
 
     }
-    fprintf(filepointer,"Hello world this is my first time handling files using c programming language");
     fclose(filepointer);
 }
